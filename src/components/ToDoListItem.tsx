@@ -9,17 +9,17 @@ interface Props {
 
 const ToDoListItem = ({ toDo, toggleToDo, deleteToDo }: Props) => {
   return (
-    <li className="todo-list-item">
-      <input
-        type="checkbox"
-        checked={toDo.isFinished}
-        onChange={() => {
-          toggleToDo(toDo.id);
-        }}
-      />
+    <li
+      className="todo-list-item"
+      onClick={() => {
+        toggleToDo(toDo.id);
+      }}
+    >
+      <input type="checkbox" checked={toDo.isFinished} />
       <span className="todo-list-item-name">{toDo.name}</span>
       <button
-        onClick={() => {
+        onClick={(event) => {
+          event.stopPropagation();
           deleteToDo(toDo.id);
         }}
         className="todo-list-item-delete"
